@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function supprimerDoublons(tableau) {// on cree une fonction qui prend un tableau en parametre
+            return [...new Set(tableau)]; // la fonction renvoie un nouveau tableau qui contient les elements uniques du tableau d'origine en utilisant l'objet Set pour eliminer les doublons et l'operateur de deconstruction pour convertir le Set en tableau
+        }
+        const users = ['user1', 'user2', 'user1', 'user3', ];// on declare un tableau qui contient des elements en double
+        console.log(supprimerDoublons(users)); // affiche ['user1', 'user2', 'user3']
+
+        function estEmailValide(email){
+            if (!email.includes("@")){//verifie si l'email contient le caractere @
+                return false;//si ce n'est pas le cas, la fonction renvoie false
+            }
+            const parties = email.split("@");//si l'email contient @, la fonction divise l'email en deux parties en utilisant le caractere @ comme separateur
+            if (parties.length !== 2){//verifie si le nombre de parties est different de 2
+                return false;//si c'est le cas, la fonction renvoie false
+            }
+            const avantAt = parties[0];
+            const apresAt = parties[1];
+            if (avantAt.length === 0 || apresAt.length === 0){//verifie si l'une des parties est vide
+                return false;//si c'est le cas, la fonction renvoie false
+            }
+            if (!apresAt.includes(".")){//verifie si la partie apres le @ contient un point
+                return false;//si ce n'est pas le cas, la fonction renvoie false
+            }
+            const domaines = apresAt.split(".");//si la partie apres le @ contient un point, la fonction divise cette partie en sous-parties en utilisant le point comme separateur
+            if (domaines.length < 2){//verifie si le nombre de sous-parties est inferieur a 2
+                return false;//si c'est le cas, la fonction renvoie false
+            }
+            const extension = domaines[domaines.length - 1];//si le nombre de sous-parties est superieur ou egal a 2, la fonction recupere la derniere element du tableau
+            if (extension.length <2){//verifie si l'extension du domaine est inferieur a 2 elements , cela veut dire qu'il manque une partie
+                return false;//si c'est le cas, la fonction renvoie false
+            }
+            return true;//si toutes les conditions sont respectees, la fonction renvoie true pour indiquer que l'email est valide
+        }
+        console.log(estEmailValide("user@example.com")); 
+        console.log(estEmailValide("user@example")); 
+        console.log(estEmailValide("user@.com")); 
+        console.log (estEmailValide("user@.com"));
+
+        function comptervoyelles(texte){
+            const voyelles = "aeiouyAEIOUY"
+            let compteur =0;
+            for(let lettre of texte){// for..of sert a parcourir les valeurs d''une chaine de caractere ou d'un tableau
+                if(voyelles.includes(lettre)){// include() verifie si c'est une voyelle
+                    compteur++; 
+
+                }
+            }
+            return compteur;
+
+        }
+        console.log (comptervoyelles("banane"));
+
+    </script>
+</body>
+</html>
